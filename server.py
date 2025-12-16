@@ -17,6 +17,8 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write(f"Number of requests recieved:{request_count}\n Requests per second:{rps:.2f}".encode())
+        with open("metrics.txt","a") as f:
+            f.write(f"{elapsed_time},{request_count},{rps:.2f}\n")
 server=HTTPServer(("localhost",8000),MyServer)
 print("Server running at http://localhost:8000")
 server.serve_forever()
