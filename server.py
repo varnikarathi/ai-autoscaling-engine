@@ -2,6 +2,7 @@ from http.server import HTTPServer,BaseHTTPRequestHandler
 import time
 request_count=0
 start_time=time.time()
+open("metrics.txt","w").close()
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         global request_count
